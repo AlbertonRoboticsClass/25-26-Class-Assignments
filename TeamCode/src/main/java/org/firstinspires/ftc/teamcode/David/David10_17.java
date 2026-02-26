@@ -29,39 +29,38 @@
 
 package org.firstinspires.ftc.teamcode.David;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 /*
 
 
 
- * This OpMode scans a single servo back and forward until Stop is pressed.
+ * This OpMode scans a single CRservo back and forward until Stop is pressed.
  * The code is structured as a LinearOpMode
- * INCREMENT sets how much to increase/decrease the servo position each cycle
+ * INCREMENT sets how much to increase/decrease the CRservo position each cycle
  * CYCLE_MS sets the update period.
  *
  * This code assumes a Servo configured with the name "left_hand" as is found on a Robot.
  *
- * NOTE: When any servo position is set, ALL attached servos are activated, so ensure that any other
+ * NOTE: When any CRservo position is set, ALL attached servos are activated, so ensure that any other
  * connected servos are able to move freely before running this test.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @TeleOp(name = "David 10_17", group = "Concept")
-@Disabled
+
 public class David10_17 extends LinearOpMode {
 
-    static final double INCREMENT   = 0.01;     // amount to slew servo each CYCLE_MS cycle
+    static final double INCREMENT   = 0.01;     // amount to slew CRservo each CYCLE_MS cycle
     static final int    CYCLE_MS    =   50;     // period of each cycle
     static final double MAX_POS     =  1.0;     // Maximum rotational position
     static final double MIN_POS     =  0.0;     // Minimum rotational position
 
     // Define class members
-    Servo   servo;
+    CRServo CRservo;
     double  position = (MAX_POS - MIN_POS) / 2; // Start at halfway position
     boolean rampUp = true;
 
@@ -69,9 +68,9 @@ public class David10_17 extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        // Connect to servo (Assume Robot Left Hand)
-        // Change the text in quotes to match any servo name on your robot.
-        servo = hardwareMap.get(Servo.class, "left_hand");
+        // Connect to CRservo (Assume Robot Left Hand)
+        // Change the text in quotes to match any CRservo name on your robot.
+        CRservo = hardwareMap.get(CRServo.class, "left_hand");
 
         // Wait for the start button
         telemetry.addData(">", "Press Start to scan Servo." );
@@ -79,10 +78,10 @@ public class David10_17 extends LinearOpMode {
         waitForStart();
 
 
-        // Scan servo till stop pressed.
+        // Scan CRservo till stop pressed.
         while(opModeIsActive()){
 
-            // slew the servo, according to the rampUp (direction) variable.
+            // slew the CRservo, according to the rampUp (direction) variable.
             if (rampUp) {
                 // Keep stepping up until we hit the max value.
                 position += INCREMENT ;
@@ -105,8 +104,8 @@ public class David10_17 extends LinearOpMode {
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
 
-            // Set the servo to the new position and pause;
-            servo.setPosition(position);
+            // Set the CRservo to the new position and pause;
+            CRservo.setPower(position);
             sleep(CYCLE_MS);
             idle();
         }
