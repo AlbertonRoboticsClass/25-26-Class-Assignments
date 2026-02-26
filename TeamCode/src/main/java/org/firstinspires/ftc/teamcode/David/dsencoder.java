@@ -103,9 +103,10 @@ public class dsencoder extends LinearOpMode{
         leftRearDrive.setPower(-0.25);
         rightRearDrive.setPower(-0.25);
 
-        while (opModeIsActive() && leftFrontDrive.getCurrentPosition() > leftFrontDrive.getTargetPosition())
-        leftFrontDrive.getCurrentPosition();
-        leftFrontDrive.getTargetPosition();
+        while (opModeIsActive() && leftFrontDrive.getCurrentPosition() > leftFrontDrive.getTargetPosition()) {
+            leftFrontDrive.getCurrentPosition();
+            leftFrontDrive.getTargetPosition();
+        }
         while (opModeIsActive() && leftRearDrive.getCurrentPosition() > leftRearDrive.getTargetPosition())
             leftRearDrive.getCurrentPosition();
         leftRearDrive.getTargetPosition();
